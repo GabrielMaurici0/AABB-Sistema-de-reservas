@@ -1,0 +1,108 @@
+@import url(global.css);
+@import url(reset.css);
+
+body {
+    background-color: var(--primary-color);
+}
+
+header {
+    background-image: url("../images/reservas-banner.jpg");
+    background-position: top;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 189px;
+}
+
+.aabb-icon {
+    max-width: 135.8px;
+    padding: 48px;
+}
+
+.menu-bar {
+    background-color: #004AAD;
+    height: 50px;
+}
+
+.menu-h {
+    list-style: none;
+    padding-left: 10%;
+
+}
+
+.menu-h li {
+    display: inline;
+}
+
+.menu-h a {
+    color: white;
+    font-size: 37px;
+}
+
+.div-cadlog {
+    height: 120px;
+    width: 400px;
+    float: right;
+    font-size: 23px;
+    margin-top: 68px;
+}
+
+.a {
+    color: white;
+    font-size: 23px;
+    padding: 12px;
+    background-color: #004AAD;
+    border-radius: 10px;
+}
+
+.div-icon {
+    float: left;
+}
+
+
+.clear {
+    clear: both;
+}
+
+header a {
+    margin: 0 20px;
+}
+
+.txt-reserva {
+    color: black;
+    font-weight: bold;
+    font-size: 32px;
+    padding-top: 50px;
+    margin-left: 52px;
+}
+
+.container-geral {
+    margin-top: 50px;
+    margin-left: 52px;
+    margin-right: 103px;
+    padding: 10px;
+    background-color: #94ABDA;
+    border-radius: 10px;
+}
+
+.container-bt {
+    color: white;
+    font-size: 33px;
+    margin-top: 20px;
+    background-color: #004AAD;
+    padding: 20px;
+    border-radius: 15px;
+    margin-right: 75px;
+    margin-left: 30px;  
+}
+
+.container-ct {
+    color: white;
+    font-size: 33px;
+    margin-top: 70px;
+    background-color: #004AAD;
+    padding: 20px;
+    border-radius: 15px;
+    margin-right: 75px;
+    margin-left: 30px;  
+    margin-bottom: 20px;
+}

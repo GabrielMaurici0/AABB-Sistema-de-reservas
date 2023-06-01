@@ -1,0 +1,9 @@
+@import url(httpsfonts.google.comspecimenPoppinsquery=poppins);
+
+:root{
+    --primary-color:#white;
+}
+
+body{
+font-family:Poppins, sans-serif;
+}

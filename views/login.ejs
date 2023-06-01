@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/aabb__logo.png">
+    <link rel="stylesheet" href="css/login.css">
+
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="Titulo">
+        <p class="Titulo-aabb">AABB-Ibirama</p>
+        <p class="SubTitulo-aabb">Eventos e entretenimento/Clube Eventos</p>
+    </div>
+    <div class="container">
+        <p class="texto">Seja Bem-Vindo</p>
+        <form action="POST">
+            <label for="cpf" class="cpf">CPF: </label>
+            <input type="text" name="cpf" id="caixa-texto">
+            <br>
+            <label for="senha" class="senha" id="senha">Senha: </label>
+            <input type="password" name="senha" id="caixa-texto">
+
+            <span id="icon-senha" onclick="viewPass()">
+                <img src="../images/show.png" alt="">
+            </span>
+            
+            <br>
+            <p class="cadastre-se">Não possui login?<a href="register.ejs"> Cadastre-se!</a> </p>
+            <br>
+
+            <button class="ok">OK</button>
+        </form>
+    </div>
+    <script src="../scripts/login.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+@import url(reset.css);
+
+*{
+    color: white;
+}
+body{
+    background-image: url("../images/login-bg.jpg");
+    background-size:100%;
+    background-repeat: no-repeat;
+    display: grid;
+    place-items: center;
+}
+.Titulo-aabb{
+    text-align: center;
+    font-size: 50px;
+    margin-top: 40px;
+}
+.SubTitulo-aabb{
+    text-align: center;
+    font-size: 26px;
+}
+.container{
+background-color: rgba(0, 0, 0, 40%);
+max-width: 650px;
+display: grid;
+place-items:center;
+margin-top: 10vh;
+
+}
+.texto{
+    padding-top: 10px;
+    font-size: 40px;
+    text-align: center;
+}
+
+#caixa-texto{
+    color: black;
+    border-radius: 50px;
+    background-color: #FFE2AB;
+    font-size: 39px;
+    margin: 20px;
+    text-align: center;
+}
+label{
+    font-size: 26px;
+    margin-left: 30px;
+}
+.cpf{
+    padding-right: 23px;
+}
+.cadastre-se{
+    text-align: center;
+}
+.ok{
+    border-radius: 50px;
+    background-color: #44241B;
+    font-size: 25px;
+    padding-inline: 20px;
+    margin-left: 550px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+#icon-senha{
+cursor: pointer;
+
+}

@@ -1,0 +1,86 @@
+@import url(reset.css);
+
+*{
+    color: white;
+}
+body{
+    background-image: url("../images/login-bg.jpg");
+    background-image: url("../images/login-bg.jpg");
+    background-size:100%;
+    background-repeat: no-repeat;
+    display: grid;
+    place-items: center;
+}
+.Titulo-aabb{
+    text-align: center;
+    font-size: 50px;
+    margin-top: 40px;
+}
+.SubTitulo-aabb{
+    text-align: center;
+    font-size: 26px;
+}
+
+.container{
+    background-color: rgba(0, 0, 0, 40%);
+    max-width: 650px;
+    margin-top: 7vh;
+    padding-bottom: 2.5vh;    
+    margin-bottom: 2vh;
+    padding-top: 20px;
+    padding-left: 50px;
+}
+
+.texto{
+    padding-top: 50px;
+    font-size: 40px;
+    text-align: center;
+}
+
+#caixa-texto{
+    color: black;
+    border-radius: 50px;
+    background-color: #FFE2AB;
+    font-size: 18px;
+    margin: 20px;
+    text-align: center;
+}
+#caixa-texto{
+    width: 220px;
+}
+label{
+    margin-left: 30px;
+}
+.cpf{
+    padding-right: 23px;
+}
+.nome{
+    padding-right: 12px;
+}
+.email{
+    padding-right: 14px;
+}
+.senha{
+    padding-right: 8px;
+}
+.cadastre-se{
+    text-align: center;
+}
+.ok{
+    border-radius: 50px;
+    background-color: #44241B;
+    font-size: 18px;
+    padding-inline: 20px;
+    margin-left: 550px;
+    cursor: pointer;
+    margin-right: 2vh;
+}
+.esquerda{
+    float: left;
+}
+.direita{
+    float: left;
+}
+.clear{
+    clear: both;
+}

@@ -1,0 +1,122 @@
+@import url(global.css);
+@import url(reset.css);
+
+body {
+    background-color: var(--primary-color);
+}
+
+
+
+header {
+    background-image: url("../images/reservas-banner.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 189px;
+}
+
+
+
+.aabb-icon {
+    max-width: 210px;
+    padding: 48px;
+}
+
+.menu-bar {
+    background-color: #004AAD;
+    height: 50px;
+}
+
+.menu-h {
+    list-style: none;
+    padding-left: 10%;
+
+}
+
+.menu-h li {
+    display: inline;
+}
+
+.menu-h a {
+    color: white;
+    font-size: 37px;
+}
+
+.div-cadlog {
+    height: 120px;
+    width: 400px;
+    float: right;
+    font-size: 23px;
+    margin-top: 68px;
+}
+
+.a {
+    color: white;
+    font-size: 23px;
+    padding: 12px;
+    background-color: #004AAD;
+    border-radius: 10px;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+.div-icone {
+    float: left;
+}
+
+
+.clear {
+    clear: both;
+}
+
+header a {
+    margin: 0 20px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+#content {
+    border: black solid 1px;
+    margin: 10%;
+    margin-top: 3%;
+}
+
+.cont-txt {
+    font-size: 25px;
+    font-weight: bold;
+    padding-left: 10%;
+    margin-top: 2%;
+}
+
+#loc {
+    margin-left: 31.75%;
+    margin-bottom: 5%;
+}
+
+.loc-txt {
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 10%;
+}
+
+.loc-txt02 {
+    font-size: 15px;
+    padding-left: 10%;
+}
+
+footer{
+    background-color: #FFDE59;
+    font-weight: bold;
+    padding: 1.5%;
+}
+#contato{
+    font-size: 16px;
+    float: right;
+}
+.horarios{
+    font-size: 11px;
+}
