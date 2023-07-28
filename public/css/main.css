@@ -88,6 +88,7 @@ html {
 #loc {
   margin-left: 31.75%;
   margin-bottom: 5%;
+  margin-top: 2%
 }
 
 .loc-txt {
@@ -110,8 +111,26 @@ footer {
   font-size: 16px;
   float: right;
 }
-.horarios {
-  font-size: 11px;
+
+#esportes{
+  margin-left: 31.75%;
+  margin-bottom: 5%;
+}
+
+footer {
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.opening-hours,
+.contact-info {
+  margin: 10px;
 }
 
 /* media query */
@@ -127,6 +146,8 @@ footer {
     color: red;
   }
   #loc {
-    margin-top: 2%;
+    margin-top: 3%;
   }
 }
+
+

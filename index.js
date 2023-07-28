@@ -1,3 +1,6 @@
+require('dotenv').config()
+const bcrypt = require('bcrypt')
+cosnt jwt = require('jsonwebtoken')
 const express = require('express')
 const ejs = require('ejs')
 const path = require('path')
@@ -6,6 +9,7 @@ const connection = require("./database/database")
 const Registro = require("./database/registro")
 const { randomInt } = require('crypto')
 const app = express();
+
 
 //database
 connection.authenticate().then(() => { console.log("conectado!") }).catch((msgErro) => {
@@ -48,7 +52,7 @@ app.get("/reservas.ejs", (req, res) => {
     res.render("reservas.ejs")
 })
 
-app.get("reserva-tenis.ejs", (req, res) => {
+app.get("/reserva-tenis.ejs", (req, res) => {
     res.render("reserva-tenis.ejs")
 })
 
@@ -64,6 +68,9 @@ app.get("/beach-tennis.ejs", (req, res) => {
     res.render("beach-tennis.ejs")
 })
 
+app.get("/admin", (req, res)=>{
+    res.render("admin.ejs")
+})
 //post's
 app.post("/salvarReg", (req, res) => {
     var cpf = req.body.cpf

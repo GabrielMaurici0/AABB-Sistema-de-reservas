@@ -20,12 +20,11 @@ header {
 
 .menu-bar {
     background-color: #004AAD;
-    height: 50px;
+
 }
 
 .menu-h {
     list-style: none;
-    padding-left: 10%;
 
 }
 
@@ -67,14 +66,6 @@ header a {
     margin: 0 20px;
 }
 
-.txt-reserva {
-    color: black;
-    font-weight: bold;
-    font-size: 32px;
-    padding-top: 50px;
-    margin-left: 52px;
-}
-
 .container-geral {
     margin-top: 50px;
     margin-left: 52px;
@@ -85,24 +76,15 @@ header a {
 }
 
 .container-bt {
-    color: white;
-    font-size: 33px;
     margin-top: 20px;
     background-color: #004AAD;
     padding: 20px;
     border-radius: 15px;
     margin-right: 75px;
-    margin-left: 30px;  
+    margin-left: 30px;
 }
-
-.container-ct {
+.link{
     color: white;
     font-size: 33px;
-    margin-top: 70px;
-    background-color: #004AAD;
-    padding: 20px;
-    border-radius: 15px;
-    margin-right: 75px;
-    margin-left: 30px;  
-    margin-bottom: 20px;
 }
+
