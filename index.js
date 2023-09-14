@@ -5,14 +5,14 @@ const express = require('express')
 const ejs = require('ejs')
 const path = require('path')
 const bodyParser = require('body-parser')
-const connection = require("./database/database")
+const database = require("./database/database")
 const Registro = require("./database/registro")
 const { randomInt } = require('crypto')
 const app = express();
 
 
 //database
-connection.authenticate().then(() => { console.log("conectado!") }).catch((msgErro) => {
+database.connection.authenticate().then(() => { console.log("conectado!") }).catch((msgErro) => {
     console.log(msgErro);
 })
 
@@ -72,30 +72,47 @@ app.get("/admin", (req, res)=>{
     res.render("admin.ejs")
 })
 //post's
-app.post("/salvarReg", (req, res) => {
-    var cpf = req.body.cpf
-    var nome = req.body.nome
-    var email = req.body.email
-    var senha = req.body.senha
-    var dataNasc = req.body.dataNasc
-    var bairro = req.body.bairro
-    var rua = req.body.rua
-    var cidade = req.body.cidade
-    var telefone = req.body.telefone
-    var cep = req.body.cep
+app.post('/auth/register/', async (req,res)=>{
+    const {cpf, nome, email, senha, confirmaSenha, dataNasc, bairro, rua, telefone, cep} = req.body
 
-    Registro.create({
-        cpf: cpf,
-        nome: nome,
-        email: email,
-        senha: senha,
-        dataNasc: dataNasc,
-        bairro: bairro,
-        rua: rua,
-        cidade: cidade,
-        telefone: telefone,
-        cep: cep
-    }).then(()=>{
-        res.redirect("/")
-    })
+    const userExists = await Registro.findOne({cpf:cpf})
+
+    if (userExists) {
+        cadastropf.setCustomValidity('Este usuário já está cadastrado');
+    }
+
+    const cadastropf = document.register.querySelector('input[name=cpf]');
 })
+
+
+
+
+
+
+// app.post("/salvarReg", (req, res) => {
+//     var cpf = req.body.cpf
+//     var nome = req.body.nome
+//     var email = req.body.email
+//     var senha = req.body.senha
+//     var confirmaSenha = req.body.confirmaSenha
+//     var dataNasc = req.body.dataNasc
+//     var bairro = req.body.bairro
+//     var rua = req.body.rua
+//     var telefone = req.body.telefone
+//     var cep = req.body.cep
+
+//     Registro.create({
+//         cpf: cpf,
+//         nome: nome,
+//         email: email,
+//         senha: senha,
+//         confirmaSenha: confirmaSenha,
+//         dataNasc: dataNasc,
+//         bairro: bairro,
+//         rua: rua,
+//         telefone: telefone,
+//         cep: cep
+//     }).then(()=>{
+//         res.redirect("/")
+//     })
+// })

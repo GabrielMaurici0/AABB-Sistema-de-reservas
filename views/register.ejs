@@ -7,6 +7,20 @@
     <link rel="icon" href="images/aabb__logo.png">
     <link rel="stylesheet" href="css/register.css">
     <title>Cadastro</title>
+<script>
+    function confereSenha() {
+        const senha = document.querySelector('input[name=senha]');
+        const confirma = document.querySelector('input[name=confirmaSenha]');
+
+        if (confirma.value === senha.value) {
+            confirma.setCustomValidity('');
+        }else{
+            confirma.setCustomValidity('As senhas não conferem!');
+        }
+    }
+
+</script>
+
 </head>
 
 <body>
@@ -17,50 +31,49 @@
     <p class="texto">Seja Bem-Vindo</p>
     <div class="container">
         <div>
-            <form method="POST" action="/salvarReg">
+            <form method="POST" action="/auth/register/" >
                 <div class="esquerda">
                     <label for="cpf" class="cpf">CPF: </label>
                     <br>
-                    <input type="text" name="cpf" id="caixa-texto">
+                    <input type="text" name="cpf" id="caixa-texto" required>
                     <br>
                     <label for="nome" class="nome">Nome: </label>
                     <br>
-                    <input type="text" name="nome" id="caixa-texto">
+                    <input type="text" name="nome" id="caixa-texto" required>
                     <br>
                     <label for="email" class="email">Email: </label>
                     <br>
-                    <input type="email" name="email" id="caixa-texto">
+                    <input type="email" name="email" id="caixa-texto" required>
                     <br>
                     <label for="senha" class="senha">Senha: </label>
                     <br>
-                    <input type="password" name="senha" id="caixa-texto">
+                    <input type="password" name="senha" id="caixa-texto" required onchange="confereSenha();">
                     <br>
-                    <label for="bairro" class="bairro">Bairro: </label>
+                    <label for="confirmaSenha" class="senha">Confirmar Senha: </label>
                     <br>
-                    <input type="text" name="bairro" id="caixa-texto">
-
+                    <input type="password" name="confirmaSenha" id="caixa-texto" required onchange="confereSenha();">
                     <br>
                 </div>
                 <div class="direita">
                     <label for="dataNasc" class="datanasc">Data de nascimento: </label>
                     <br>
-                    <input type="date" name="dataNasc" id="caixa-texto">
+                    <input type="date" name="dataNasc" id="caixa-texto" required>
                     <br>
                     <label for="telefone" class="telefone">Telefone: </label>
                     <br>
-                    <input type="tel" name="telefone" id="caixa-texto">
+                    <input type="tel" name="telefone" id="caixa-texto" required>
                     <br>
                     <label for="cep" class="cep">CEP: </label>
                     <br>
-                    <input type="text" name="cep" id="caixa-texto">
+                    <input type="text" name="cep" id="caixa-texto" required>
                     <br>
                     <label for="rua" class="rua">Rua: </label>
                     <br>
-                    <input type="text" name="rua" id="caixa-texto">
+                    <input type="text" name="rua" id="caixa-texto" required>
                     <br>
-                    <label for="cidade" class="cidade">Cidade: </label>
+                    <label for="bairro" class="bairro">Bairro: </label>
                     <br>
-                    <input type="text" name="cidade" id="caixa-texto">
+                    <input type="text" name="bairro" id="caixa-texto" required>
                 </div>
                 <div class="clear"></div>
                 <p class="cadastre-se">Já possui Cadastro?<a href="login.ejs"> Conecte-se!</a> </p>
