@@ -24,7 +24,7 @@ app.use(bodyParser.json())
 app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, '/public')));
-
+//teste
 //get's
 app.get("/", (req, res) => {
     res.render("main.ejs")
