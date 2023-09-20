@@ -1,3 +1,4 @@
+//imports
 require('dotenv').config()
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
@@ -8,6 +9,7 @@ const bodyParser = require('body-parser')
 const database = require("./database/database")
 const Registro = require("./database/registro")
 const { randomInt } = require('crypto')
+const { register } = require('module')
 const app = express();
 
 
@@ -16,16 +18,18 @@ database.connection.authenticate().then(() => { console.log("conectado!") }).cat
     console.log(msgErro);
 })
 
+//port
 app.listen(3001)
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+//setting of view
 app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, '/public')));
-//teste
-//get's
+
+//routes
 app.get("/", (req, res) => {
     res.render("main.ejs")
 })
@@ -71,17 +75,54 @@ app.get("/beach-tennis.ejs", (req, res) => {
 app.get("/admin", (req, res)=>{
     res.render("admin.ejs")
 })
+
+
 //post's
 app.post('/auth/register/', async (req,res)=>{
     const {cpf, nome, email, senha, confirmaSenha, dataNasc, bairro, rua, telefone, cep} = req.body
 
+
+    //check user
     const userExists = await Registro.findOne({cpf:cpf})
 
     if (userExists) {
         cadastropf.setCustomValidity('Este usuário já está cadastrado');
     }
 
-    const cadastropf = document.register.querySelector('input[name=cpf]');
+   
+
+    //create pass
+    const salt = await bcrypt.genSalt(12)
+
+    const passwordHash = await bcrypt.hash(senha, salt)
+
+
+    //create user
+    const user = new Registro({
+        cpf,
+        nome,
+        email,
+        senha,
+        confirmaSenha,
+        dataNasc,
+        bairro,
+        rua,
+        telefone,
+        cep
+    })
+
+    try {
+
+        //resolve problems of save
+        await Registro.create(cpf,nome,email,senha,confirmaSenha,dataNasc,bairro,rua,telefone,cep)
+        
+        res.status(201).send("Usuário criado com sucesso")
+        
+    } catch (error) {
+        console.log(error);
+        
+        res.status(500).send("Aconteceu um erro no servidor, tente novamente mais tarde")
+    }
 })
 
 
@@ -89,30 +130,3 @@ app.post('/auth/register/', async (req,res)=>{
 
 
 
-// app.post("/salvarReg", (req, res) => {
-//     var cpf = req.body.cpf
-//     var nome = req.body.nome
-//     var email = req.body.email
-//     var senha = req.body.senha
-//     var confirmaSenha = req.body.confirmaSenha
-//     var dataNasc = req.body.dataNasc
-//     var bairro = req.body.bairro
-//     var rua = req.body.rua
-//     var telefone = req.body.telefone
-//     var cep = req.body.cep
-
-//     Registro.create({
-//         cpf: cpf,
-//         nome: nome,
-//         email: email,
-//         senha: senha,
-//         confirmaSenha: confirmaSenha,
-//         dataNasc: dataNasc,
-//         bairro: bairro,
-//         rua: rua,
-//         telefone: telefone,
-//         cep: cep
-//     }).then(()=>{
-//         res.redirect("/")
-//     })
-// })
