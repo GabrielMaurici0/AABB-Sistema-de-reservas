@@ -3,7 +3,7 @@ const database = require("./database");
 
 const Registro = database.connection.define('Registro', {
     cpf: {
-        type: sequelize.BIGINT,
+        type: sequelize.TEXT,
         allowNull: false
     },
     nome: {
@@ -35,11 +35,11 @@ const Registro = database.connection.define('Registro', {
         allowNull: false
     },
     telefone: {
-        type: sequelize.BIGINT,
+        type: sequelize.TEXT,
         allowNull: false
     },
     cep: {
-        type: sequelize.BIGINT,
+        type: sequelize.TEXT,
         allowNull: false
     }
 })

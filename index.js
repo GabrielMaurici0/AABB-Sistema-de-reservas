@@ -9,7 +9,6 @@ const bodyParser = require('body-parser')
 const database = require("./database/database")
 const Registro = require("./database/registro")
 const { randomInt } = require('crypto')
-const { register } = require('module')
 const app = express();
 
 
@@ -86,7 +85,7 @@ app.post('/auth/register/', async (req,res)=>{
     const userExists = await Registro.findOne({cpf:cpf})
 
     if (userExists) {
-        cadastropf.setCustomValidity('Este usuário já está cadastrado');
+       //send msg of user exist
     }
 
    
@@ -97,13 +96,13 @@ app.post('/auth/register/', async (req,res)=>{
     const passwordHash = await bcrypt.hash(senha, salt)
 
 
-    //create user
-    const user = new Registro({
+    //create register
+    const register = new Registro({
         cpf,
         nome,
         email,
-        senha,
-        confirmaSenha,
+        senha: passwordHash,
+        confirmaSenha: passwordHash,
         dataNasc,
         bairro,
         rua,
@@ -113,8 +112,8 @@ app.post('/auth/register/', async (req,res)=>{
 
     try {
 
-        //resolve problems of save
-        await Registro.create(cpf,nome,email,senha,confirmaSenha,dataNasc,bairro,rua,telefone,cep)
+        //saving user
+        await register.save()
         
         res.status(201).send("Usuário criado com sucesso")
         
