@@ -23,7 +23,7 @@ const Registro = database.connection.define('Registro', {
         allowNull: false
     },
     dataNasc: {
-        type: sequelize.DATE,
+        type: sequelize.TEXT,
         allowNull: false
     },
     bairro: {
