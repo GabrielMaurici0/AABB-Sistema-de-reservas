@@ -17,12 +17,12 @@
     </div>
     <div class="container">
         <p class="texto">Seja Bem-Vindo</p>
-        <form action="POST">
+        <form method="post" action="/auth/login/" >
             <label for="cpf" class="cpf">CPF: </label>
-            <input type="text" name="cpf" id="caixa-texto">
+            <input type="text" name="cpf" id="caixa-texto" required>
             <br>
             <label for="senha" class="senha" id="senha">Senha: </label>
-            <input type="password" name="senha" class="caixa-senha" id="caixa-texto senha">
+            <input type="password" name="senha" class="caixa-senha" id="caixa-texto senha" required>
 
             <span id="icon-senha" onclick="viewPass()">
                 <img src="../public/images/show.png" alt="" class="reveal">
@@ -32,7 +32,7 @@
             <p class="cadastre-se">Não possui login?<a href="register.ejs"> Cadastre-se!</a> </p>
             <br>
 
-            <a class="ok" href="main.ejs">OK</a>
+            <a class="ok">OK</a>
         </form>
     </div>
     <script src="../scripts/login.js"></script>

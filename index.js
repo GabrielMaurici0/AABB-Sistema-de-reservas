@@ -71,24 +71,24 @@ app.get("/beach-tennis.ejs", (req, res) => {
     res.render("beach-tennis.ejs")
 })
 
-app.get("/admin", (req, res)=>{
+app.get("/admin", (req, res) => {
     res.render("admin.ejs")
 })
 
 
 //post's
-app.post('/auth/register/', async (req,res)=>{
-    const {cpf, nome, email, senha, confirmaSenha, dataNasc, bairro, rua, telefone, cep} = req.body
+app.post('/auth/register/', async (req, res) => {
+    const { cpf, nome, email, senha, confirmaSenha, dataNasc, bairro, rua, telefone, cep } = req.body
 
 
     //check user
-    const userExists = await Registro.findOne({cpf:cpf})
+    const userExists = await Registro.findOne({ cpf: cpf })
 
     if (userExists) {
-       //send msg of user exist
+        return res.status(422).console.log("Este cpf já está cadastrado");
     }
 
-   
+
 
     //create pass
     const salt = await bcrypt.genSalt(12)
@@ -114,18 +114,33 @@ app.post('/auth/register/', async (req,res)=>{
 
         //saving user
         await register.save()
-        
-        res.status(201).send("Usuário criado com sucesso")
-        
+
+        res.status(201).send()//add route with available user profile
+
     } catch (error) {
         console.log(error);
-        
-        res.status(500).send("Aconteceu um erro no servidor, tente novamente mais tarde")
+
+        res.status(500).send("Aconteceu um erro no servidor, tente novamente mais tarde")//make a floating message
     }
 })
 
+//login user
+app.post("auth/login", async (req, res) => {
+
+    const { cpf, senha } = req.body
 
 
+    //check if user exists
+    const user = await Registro.findOne({ cpf: cpf })
 
+    if (!user) {
+        return res.status(404).console.log("Este cpf não está cadastrado");
+    }
 
+    //check if password match
+    const checkPass = await bcrypt.compare(senha, user.senha)
 
+    if (!checkPass) {
+        return res.status(422).console.log("Senha Inválida");
+    }
+})
