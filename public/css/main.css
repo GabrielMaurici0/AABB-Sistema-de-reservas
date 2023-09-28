@@ -133,21 +133,7 @@ footer {
   margin: 10px;
 }
 
-/* media query */
+.banner-esp{
+margin-left: -8%;
 
-@media (max-width: 896px) {
-  header {
-    background-image: url("../images/banner-celular.jpg");
-    background-size: 100%;
-    background-repeat: no-repeat;
-  }
-
-  .loc-txt {
-    color: red;
-  }
-  #loc {
-    margin-top: 3%;
-  }
 }
-
-

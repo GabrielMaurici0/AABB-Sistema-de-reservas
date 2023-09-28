@@ -10,6 +10,7 @@ const database = require("./database/database")
 const Registro = require("./database/registro")
 const { randomInt } = require('crypto')
 const app = express();
+const nodemailer = require("nodemailer")
 
 
 //database

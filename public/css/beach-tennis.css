@@ -1,0 +1,67 @@
+@import url(global.css);
+@import url(reset.css);
+
+body {
+    background-color: var(--primary-color);
+}
+
+header {
+    background-image: url("../images/reservas-banner.jpg");
+    background-position: top;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 189px;
+}
+
+.aabb-icon {
+    max-width: 135.8px;
+    padding: 48px;
+}
+
+.menu-bar {
+    background-color: #004AAD;
+
+}
+
+.menu-h {
+    list-style: none;
+
+}
+
+.menu-h li {
+    display: inline;
+}
+
+.menu-h a {
+    color: white;
+    font-size: 37px;
+}
+
+.div-cadlog {
+    height: 120px;
+    width: 400px;
+    float: right;
+    font-size: 23px;
+    margin-top: 68px;
+}
+
+.a {
+    color: white;
+    font-size: 23px;
+    padding: 12px;
+    background-color: #004AAD;
+    border-radius: 10px;
+}
+
+.div-icon {
+    float: left;
+}
+
+
+.clear {
+    clear: both;
+}
+
+header a {
+    margin: 0 20px;
+}
