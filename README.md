@@ -17,10 +17,10 @@ Next, you will have to create a file named .env, in this file you will place:
 
 If you use MySql Workbench, you will have to run the following commands:
 
-    create database aabb;
-    use aabb;
-    CREATE USER 'aabb'@'localhost' IDENTIFIED BY 'Abcd&123';
-    GRANT ALL PRIVILEGES ON * . * TO 'aabb'@'localhost';
+    create database NAME_OF_DATABASE;
+    use NAME_OF_DATABASE;
+    CREATE USER 'USER_OF_DATABASE'@'localhost' IDENTIFIED BY 'PASSWORD';
+    GRANT ALL PRIVILEGES ON * . * TO 'USER_OF_DATABASE'@'localhost';
 
 Once this is done, you can type the following command to start the server:
 
