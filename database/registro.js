@@ -4,7 +4,8 @@ const database = require("./database");
 const Registro = database.connection.define('Registro', {
     cpf: {
         type: sequelize.TEXT,
-        allowNull: false
+        allowNull: false,
+        unique:true
     },
     nome: {
         type: sequelize.TEXT,

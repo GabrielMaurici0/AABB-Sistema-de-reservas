@@ -41,7 +41,7 @@ app.get("/login.ejs", (req, res) => {
 })
 
 app.get("/register.ejs", (req, res) => {
-    res.render("register.ejs")
+    res.render("register.ejs");
 })
 
 app.get("/salao.ejs", (req, res) => {
@@ -82,14 +82,12 @@ app.post('/auth/register/', async (req, res) => {
     const { cpf, nome, email, senha, confirmaSenha, dataNasc, bairro, rua, telefone, cep } = req.body
 
 
-    //check user
-    const userExists = await Registro.findOne({ cpf: cpf })
+    
+//check user
+    await Registro.create({cpf: "cpf"});
+    const registro = await Registro.findOne();
 
-    if (userExists) {
-        return res.status(422).console.log("Este cpf já está cadastrado");
-    }
-
-
+    
 
     //create pass
     const salt = await bcrypt.genSalt(12)
