@@ -84,10 +84,13 @@ app.post('/auth/register/', async (req, res) => {
 
     
 //check user
-    await Registro.create({cpf: "cpf"});
-    const registro = await Registro.findOne();
 
-    
+//problema está aqui
+
+    // await Registro.create({cpf: "cpf"});
+    // const checkCPF = await Registro.findOne({where:{cpf:cpf}});
+
+//termina aqui
 
     //create pass
     const salt = await bcrypt.genSalt(12)
@@ -114,12 +117,30 @@ app.post('/auth/register/', async (req, res) => {
         //saving user
         await register.save()
 
-        res.status(201).send()//add route with available user profile
+
+        const mensagem1 = 'Sucesso ao cadastrar'
+        res.status(201).send(`
+        <html>
+      <body>
+        <script>
+          alert('${mensagem1}');
+        </script>
+      </body>
+    </html>
+        `)//add route with available user profile
 
     } catch (error) {
         console.log(error);
-
-        res.status(500).send("Aconteceu um erro no servidor, tente novamente mais tarde")//make a floating message
+        const mensagem2 = 'Erro ao cadastrar'
+        res.status(500).send(`
+        <html>
+      <body>
+        <script>
+          alert('${mensagem2}');
+        </script>
+      </body>
+    </html>
+        `)//make a floating message
     }
 })
 
