@@ -3,44 +3,44 @@ const database = require("./database");
 
 const Registro = database.connection.define('Registro', {
     cpf: {
-        type: sequelize.TEXT,
+        type: sequelize.STRING(512),
         allowNull: false,
         unique:true
     },
     nome: {
-        type: sequelize.TEXT,
+        type: sequelize.STRING(512),
         allowNull: false
     },
     email: {
-        type: sequelize.TEXT,
+        type: sequelize.STRING(512),
         allowNull: false
     },
     senha: {
-        type: sequelize.TEXT,
+        type: sequelize.STRING(512),
         allowNull: false
     },
     confirmaSenha: {
-        type: sequelize.TEXT,
+        type: sequelize.STRING(512),
         allowNull: false
     },
     dataNasc: {
-        type: sequelize.TEXT,
+        type: sequelize.STRING(512),
         allowNull: false
     },
     bairro: {
-        type: sequelize.TEXT,
+        type: sequelize.STRING(512),
         allowNull: false
     },
     rua: {
-        type: sequelize.TEXT,
+        type: sequelize.STRING(512),
         allowNull: false
     },
     telefone: {
-        type: sequelize.TEXT,
+        type: sequelize.STRING(512),
         allowNull: false
     },
     cep: {
-        type: sequelize.TEXT,
+        type: sequelize.STRING(512),
         allowNull: false
     }
 })

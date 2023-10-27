@@ -85,12 +85,12 @@ app.post('/auth/register/', async (req, res) => {
     
 //check user
 
-//problema está aqui
 
-    // await Registro.create({cpf: "cpf"});
-    // const checkCPF = await Registro.findOne({where:{cpf:cpf}});
 
-//termina aqui
+    
+     const checkCPF = await Registro.findOne({where:{cpf:cpf}});
+
+
 
     //create pass
     const salt = await bcrypt.genSalt(12)
