@@ -127,7 +127,7 @@ app.post('/auth/register/', async (req, res) => {
         </script>
       </body>
     </html>
-        `)//add route with available user profile
+        `)//colocar para ficar na tela de registro
 
     } catch (error) {
         console.log(error);
@@ -140,12 +140,12 @@ app.post('/auth/register/', async (req, res) => {
         </script>
       </body>
     </html>
-        `)//make a floating message
+        `)//colocar para ficar na tela de registro
     }
 })
 
 //login user
-app.post("auth/login", async (req, res) => {
+app.get("auth/login", async (req, res) => {
 
     const { cpf, senha } = req.body
 
