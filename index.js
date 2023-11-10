@@ -6,10 +6,13 @@ const express = require('express')
 const ejs = require('ejs')
 const path = require('path')
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 const database = require("./database/database")
 const Registro = require("./database/registro")
 const { randomInt } = require('crypto')
 const app = express();
+const fs = require(`fs`);
+const cors = require('cors');
 
 
 
@@ -19,7 +22,28 @@ database.connection.authenticate().then(() => { console.log("conectado!") }).cat
 })
 
 //port
-app.listen(3001)
+const portaServidor = 3000
+app.use(express.json())
+app.use(cookieParser())
+banco.conexao.sync( function(){
+  console.log("Banco de dados conectado.");
+})
+
+const corsOptions = {
+    origin: ['http://127.0.0.1:5500'],
+    methods: 'GET,POST'
+  };
+
+  app.use(cors(corsOptions));
+
+  var options =  {
+    key: fs.readFileSync("key.pem"),
+    cert: fs.readFileSync("cert.pem"),
+  }
+
+  https.createServer(options, app).listen(portaServidor,()=>{
+    console.log("Servidor conectado na porta "+ portaServidor);
+  });
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -77,21 +101,37 @@ app.get("/admin", (req, res) => {
 })
 
 
+//check user
+async function findRegCPF(cpf){
+    const resultado = await Registro.connection.findAll({
+      where:{ cpf:cpf }
+    })
+    if( resultado.length == 0 ) return null
+    return resultado[0]
+  }
+  async function findRegId(id){
+    const resultado = await Registro.connection.findByPk(id)
+    return resultado
+  }
+
+
+
+
 //post's
 app.post('/auth/register/', async (req, res) => {
     const { cpf, nome, email, senha, confirmaSenha, dataNasc, bairro, rua, telefone, cep } = req.body
 
+    //check user2
+    const usuario = await findRegCPF(cpf)
+    if( usuario == null ){
+      return res.status(422).send({msg:"Usuário não encontrado"})
+    }
+    const checkPassword = await bcrypt.compare(password, usuario.hash)
+    if( !checkPassword ){
+      return res.status(422).send({msg:"Senha Inválida"})
+    }
 
     
-//check user
-
-
-
-    
-     const checkCPF = await Registro.findOne({where:{cpf:cpf}});
-
-
-
     //create pass
     const salt = await bcrypt.genSalt(12)
 
