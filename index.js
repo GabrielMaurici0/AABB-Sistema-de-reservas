@@ -7,6 +7,7 @@ const ejs = require('ejs')
 const path = require('path')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
+const https = require('https')
 const database = require("./database/database")
 const Registro = require("./database/registro")
 const { randomInt } = require('crypto')
@@ -25,7 +26,7 @@ database.connection.authenticate().then(() => { console.log("conectado!") }).cat
 const portaServidor = 3000
 app.use(express.json())
 app.use(cookieParser())
-banco.conexao.sync( function(){
+database.connection.sync( function(){
   console.log("Banco de dados conectado.");
 })
 
@@ -104,7 +105,7 @@ app.get("/admin", (req, res) => {
 //check user
 async function findRegCPF(cpf){
     const resultado = await Registro.connection.findAll({
-      where:{ cpf:cpf }
+      where:{ cpf:Registro.cpf }
     })
     if( resultado.length == 0 ) return null
     return resultado[0]
