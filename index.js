@@ -97,40 +97,54 @@ app.get("/beach-tennis.ejs", (req, res) => {
     res.render("beach-tennis.ejs")
 })
 
-app.get("/admin", (req, res) => {
-    res.render("admin.ejs")
-})
 
 
 //check user
 async function findRegCPF(cpf){
-    const resultado = await Registro.connection.findAll({
-      where:{ cpf:Registro.cpf }
-    })
-    if( resultado.length == 0 ) return null
-    return resultado[0]
-  }
-  async function findRegId(id){
-    const resultado = await Registro.connection.findByPk(id)
-    return resultado
-  }
 
 
+
+
+
+
+  try{
+     await Registro.sync();
+
+     const pessoasEncontradas = await Registro.findAll({
+      where:{cpf:Registro.cpf}
+     })
+     console.log('Usuários encontrados:', usuarios);
+  }catch (error){
+    console.error('Erro ao buscar usuários:', error);
+  }
+
+  //   const resultado = await Registro.connection.findAll({
+  //     where:{ cpf:Registro.cpf }
+  //   })
+  //   if( resultado.length == 0 ) return null
+  //   return resultado[0]
+  // }
+  // async function findRegId(id){
+  //   const resultado = await Registro.connection.findByPk(id)
+  //   return resultado
+  // 
+
+}
 
 
 //post's
 app.post('/auth/register/', async (req, res) => {
     const { cpf, nome, email, senha, confirmaSenha, dataNasc, bairro, rua, telefone, cep } = req.body
 
-    //check user2
-    const usuario = await findRegCPF(cpf)
-    if( usuario == null ){
-      return res.status(422).send({msg:"Usuário não encontrado"})
-    }
-    const checkPassword = await bcrypt.compare(password, usuario.hash)
-    if( !checkPassword ){
-      return res.status(422).send({msg:"Senha Inválida"})
-    }
+    // //check user2
+    // const usuario = await findRegCPF(cpf)
+    // if( usuario == null ){
+    //   return res.status(422).send({msg:"Usuário não encontrado"})
+    // }
+    // const checkPassword = await bcrypt.compare(password, usuario.hash)
+    // if( !checkPassword ){
+    //   return res.status(422).send({msg:"Senha Inválida"})
+    // }
 
     
     //create pass
@@ -139,21 +153,24 @@ app.post('/auth/register/', async (req, res) => {
     const passwordHash = await bcrypt.hash(senha, salt)
 
 
-    //create register
-    const register = new Registro({
-        cpf,
-        nome,
-        email,
-        senha: passwordHash,
-        confirmaSenha: passwordHash,
-        dataNasc,
-        bairro,
-        rua,
-        telefone,
-        cep
-    })
-
     try {
+      await Registro.sync()
+
+
+
+      //create register
+      const register = new Registro.create({
+          cpf,
+          nome,
+          email,
+          senha: passwordHash,
+          confirmaSenha: passwordHash,
+          dataNasc,
+          bairro,
+          rua,
+          telefone,
+          cep
+      })
 
         //saving user
         await register.save()
