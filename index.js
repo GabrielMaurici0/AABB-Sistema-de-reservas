@@ -23,7 +23,7 @@ database.connection.authenticate().then(() => { console.log("conectado!") }).cat
 })
 
 //port
-const portaServidor = 3000
+const portaServidor = 3001
 app.use(express.json())
 app.use(cookieParser())
 database.connection.sync( function(){
@@ -102,13 +102,8 @@ app.get("/beach-tennis.ejs", (req, res) => {
 //check user
 async function findRegCPF(cpf){
 
-
-
-
-
-
   try{
-     await Registro.sync();
+     await database.connection.sync();
 
      const pessoasEncontradas = await Registro.findAll({
       where:{cpf:Registro.cpf}
@@ -118,17 +113,6 @@ async function findRegCPF(cpf){
     console.error('Erro ao buscar usuários:', error);
   }
 
-  //   const resultado = await Registro.connection.findAll({
-  //     where:{ cpf:Registro.cpf }
-  //   })
-  //   if( resultado.length == 0 ) return null
-  //   return resultado[0]
-  // }
-  // async function findRegId(id){
-  //   const resultado = await Registro.connection.findByPk(id)
-  //   return resultado
-  // 
-
 }
 
 
@@ -136,17 +120,6 @@ async function findRegCPF(cpf){
 app.post('/auth/register/', async (req, res) => {
     const { cpf, nome, email, senha, confirmaSenha, dataNasc, bairro, rua, telefone, cep } = req.body
 
-    // //check user2
-    // const usuario = await findRegCPF(cpf)
-    // if( usuario == null ){
-    //   return res.status(422).send({msg:"Usuário não encontrado"})
-    // }
-    // const checkPassword = await bcrypt.compare(password, usuario.hash)
-    // if( !checkPassword ){
-    //   return res.status(422).send({msg:"Senha Inválida"})
-    // }
-
-    
     //create pass
     const salt = await bcrypt.genSalt(12)
 
@@ -154,12 +127,12 @@ app.post('/auth/register/', async (req, res) => {
 
 
     try {
-      await Registro.sync()
+      await database.connection.sync()
 
 
 
       //create register
-      const register = new Registro.create({
+      const register = await Registro.Registro.create({
           cpf,
           nome,
           email,
@@ -177,28 +150,46 @@ app.post('/auth/register/', async (req, res) => {
 
 
         const mensagem1 = 'Sucesso ao cadastrar'
-        res.status(201).send(`
-        <html>
-      <body>
-        <script>
-          alert('${mensagem1}');
-        </script>
-      </body>
-    </html>
-        `)//colocar para ficar na tela de registro
+        res.status(201).send()//redirecionar tela de inicio logado
 
     } catch (error) {
         console.log(error);
-        const mensagem2 = 'Erro ao cadastrar'
+        const mensagem2 = 'Erro ao cadastrar, estes dados já estão cadastrados, tente fazer o login'
         res.status(500).send(`
         <html>
+        <style>
+        .button-return{
+
+          padding: 10px 20px; /* Padding interno */
+          font-size: 16px; /* Tamanho da fonte */
+          background-color: #3498db; /* Cor de fundo */
+          color: #fff; /* Cor do texto */
+          border: none; /* Remover a borda */
+          border-radius: 5px; /* Arredondamento dos cantos */
+          cursor: pointer; /* Cursor ao passar por cima */
+          transition: background-color 0.3s ease;
+          position: absolute;
+          top:50%;
+          left:50%;
+          transform: translate (-50%, -50%);
+        }
+
+        </style>
       <body>
+
+      <button class="button-return" onclick="voltar()">Clique Aqui para Voltar</button>
         <script>
           alert('${mensagem2}');
+
+          function voltar() {
+            window.history.back(); // Método que retorna para a tela anterior
+          
+          }
         </script>
+
       </body>
     </html>
-        `)//colocar para ficar na tela de registro
+        `)//colocar um botao para voltar ao registrob 
     }
 })
 

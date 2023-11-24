@@ -47,4 +47,4 @@ const Registro = database.connection.define('Registro', {
 
 Registro.sync({force: false}).then(()=>{});
 
-module.exports = {Registro:Registro} 
+module.exports = {Registro} 
