@@ -23,7 +23,7 @@ database.connection.authenticate().then(() => { console.log("conectado!") }).cat
 })
 
 //port
-const portaServidor = 3001
+const portaServidor = 3000
 app.use(express.json())
 app.use(cookieParser())
 database.connection.sync( function(){
