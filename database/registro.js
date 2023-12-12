@@ -5,7 +5,7 @@ const Registro = database.connection.define('Registro', {
     cpf: {
         type: DataTypes.STRING(512),
         allowNull: false,
-        unique:true
+        primaryKey: true,
     },
     nome: {
         type: DataTypes.STRING(512),
