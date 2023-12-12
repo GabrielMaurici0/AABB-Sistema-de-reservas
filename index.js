@@ -43,9 +43,14 @@ app.use(function (req, res, next) {
     cert: fs.readFileSync("cert.pem"),
   }
 
-  https.createServer(options, app).listen(portaServidor,()=>{
-    console.log("Servidor conectado na porta "+ portaServidor);
-  });
+  // https.createServer(options, app).listen(portaServidor,()=>{
+  //   console.log("Servidor conectado na porta "+ portaServidor);
+  // });
+app.listen 
+app.listen( portaServidor, function(){
+    console.log("Servidor iniciados na porta "+portaServidor);
+})
+
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
