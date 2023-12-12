@@ -30,12 +30,13 @@ database.connection.sync( function(){
   console.log("Banco de dados conectado.");
 })
 
-const corsOptions = {
-    origin: ['http://127.0.0.1:5500'],
-    methods: 'GET,POST'
-  };
 
-  app.use(cors(corsOptions));
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', '*');
+  next();
+});
 
   var options =  {
     key: fs.readFileSync("key.pem"),
